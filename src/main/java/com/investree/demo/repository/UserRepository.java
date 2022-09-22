@@ -1,9 +1,15 @@
 package com.investree.demo.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.investree.demo.model.User;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
+public interface UserRepository extends PagingAndSortingRepository<User, Long> {
+  @Query("SELECT c FROM User c")
+  public List<User> getList();
 }

@@ -1,25 +1,28 @@
 package com.investree.demo.controller;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
-import com.investree.demo.model.User;
+import com.investree.demo.repository.UserRepository;
 import com.investree.demo.view.impl.UserService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
+
 @RestController
-@RequestMapping("/api/investree_fp")
+@RequestMapping("/users/")
 public class UserController {
 
-  private UserService userService;
+  @Autowired
+  public UserRepository userRepository;
 
-  public UserController(UserService userService) {
-    super();
-    this.userService = userService;
-  }
+  @Autowired
+  UserService userService;
 
-  @GetMapping
-  public List<User> getAlUsers() {
-    return userService.getAllUsers();
+  @GetMapping("/listUser")
+  @ResponseBody
+  public ResponseEntity<Map> getList() {
+    Map c = userService.getAllUsers();
+    return new ResponseEntity<Map>(c, HttpStatus.OK);
   }
 }

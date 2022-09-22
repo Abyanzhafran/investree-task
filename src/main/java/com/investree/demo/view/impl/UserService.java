@@ -1,8 +1,7 @@
 package com.investree.demo.view.impl;
 
-import com.investree.demo.model.User;
-import java.util.List;
+import java.util.Map;
 
 public interface UserService {
-  List<User> getAllUsers();
+  public Map getAllUsers();
 }
