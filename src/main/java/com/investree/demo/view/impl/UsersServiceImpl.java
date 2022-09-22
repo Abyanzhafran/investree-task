@@ -2,8 +2,8 @@ package com.investree.demo.view.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.investree.demo.model.User;
-import com.investree.demo.repository.UserRepository;
+import com.investree.demo.model.Users;
+import com.investree.demo.repository.UsersRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,14 +12,14 @@ import java.util.*;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UsersServiceImpl implements UsersService {
 
   @Autowired
-  public UserRepository userRepository;
+  public UsersRepository userRepository;
 
   @Override
   public Map getAllUsers() {
-    List<User> list = new ArrayList<User>();
+    List<Users> list = new ArrayList<Users>();
     Map map = new HashMap();
     try {
 

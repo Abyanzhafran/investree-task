@@ -1,7 +1,7 @@
 package com.investree.demo.controller;
 
-import com.investree.demo.repository.UserRepository;
-import com.investree.demo.view.impl.UserService;
+import com.investree.demo.repository.UsersRepository;
+import com.investree.demo.view.impl.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,13 +11,13 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/users/")
-public class UserController {
+public class UsersController {
 
   @Autowired
-  public UserRepository userRepository;
+  public UsersRepository userRepository;
 
   @Autowired
-  UserService userService;
+  UsersService userService;
 
   @GetMapping("/listUser")
   @ResponseBody
