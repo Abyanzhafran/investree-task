@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.investree.demo.model.Users;
 import com.investree.demo.repository.UsersRepository;
+import com.investree.demo.view.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

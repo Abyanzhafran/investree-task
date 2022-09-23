@@ -1,4 +1,4 @@
-package com.investree.demo.view.impl;
+package com.investree.demo.view;
 
 import java.util.Map;
 

@@ -21,4 +21,10 @@ public class Users implements Serializable {
 
   @Column(name = "password")
   private String password;
+
+  @Column(name = "is_active")
+  private Boolean is_active;
+
+  @OneToOne(mappedBy = "detailUser")
+  private UserDetail detail;
 }
