@@ -8,9 +8,9 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "userdetail")
+@Table(name = "user_detail")
 
-public class UserDetail implements Serializable {
+public class UsersDetail implements Serializable {
 
   @Id
   @Column(name = "id")

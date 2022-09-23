@@ -13,10 +13,10 @@ import java.util.*;
 
 @Service
 @Transactional
-public class UsersServiceImpl implements UsersService {
+public class UsersImpl implements UsersService {
 
   @Autowired
-  public UsersRepository userRepository;
+  public UsersRepository usersRepository;
 
   @Override
   public Map getAllUsers() {
@@ -24,7 +24,7 @@ public class UsersServiceImpl implements UsersService {
     Map map = new HashMap();
     try {
 
-      list = userRepository.getList();
+      list = usersRepository.getList();
       map.put("data", list);
       map.put("statusCode", 200);
       map.put("statusMessage", "Get Sukses");
@@ -36,5 +36,22 @@ public class UsersServiceImpl implements UsersService {
       map.put("statusMessage", e);
       return map;
     }
+  }
+
+  @Override
+  public Map insert(Users obj) {
+    Map map = new HashMap();
+    try {
+      Users save = usersRepository.save(obj);
+      map.put("data", save);
+      map.put("code", "200");
+      map.put("status", "success");
+      return map;
+    } catch (Exception e) {
+      map.put("code", "500");
+      map.put("status", "failed");
+      return map;
+    }
+
   }
 }

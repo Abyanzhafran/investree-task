@@ -26,5 +26,5 @@ public class Users implements Serializable {
   private Boolean is_active;
 
   @OneToOne(mappedBy = "detailUser")
-  private UserDetail detail;
+  private UsersDetail detail;
 }
