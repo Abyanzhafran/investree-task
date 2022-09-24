@@ -8,6 +8,9 @@ import com.investree.demo.view.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.*;
 
@@ -35,6 +38,27 @@ public class UsersImpl implements UsersService {
       map.put("statusCode", "500");
       map.put("statusMessage", e);
       return map;
+    }
+  }
+
+  @Override
+  public Map getByUsername(String username, Integer page, Integer size) {
+
+    Map map = new HashMap();
+    try {
+      Pageable show_data = PageRequest.of(page, size);
+      Page<Users> list = usersRepository.getByUsername(username, show_data);
+
+      map.put("data", list);
+      map.put("statusCode", 200);
+      map.put("statusMessage", "Get Sukses");
+      return map;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      map.put("statusCode", "500");
+      map.put("statusMessage", e);
+      return map;// eror
     }
   }
 
