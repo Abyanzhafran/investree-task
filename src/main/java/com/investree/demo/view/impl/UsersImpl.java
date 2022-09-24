@@ -107,4 +107,29 @@ public class UsersImpl implements UsersService {
       return map;
     }
   }
+
+  @Override
+  public Map delete(Long idusers) {
+    Map map = new HashMap();
+    try {
+
+      Users obj = usersRepository.getById(idusers);
+      if (obj == null) {
+        map.put("statusCode", "404");
+        map.put("statusMessage", "data id tidak ditemuakan");
+        return map;
+      }
+
+      usersRepository.deleteById(obj.getId());
+      map.put("statusCode", "200");
+      map.put("statusMessage", "Delete Sukses");
+      return map;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      map.put("statusCode", "500");
+      map.put("statusMessage", e);
+      return map;
+    }
+  }
 }

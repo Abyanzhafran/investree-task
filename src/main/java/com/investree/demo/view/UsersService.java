@@ -11,5 +11,7 @@ public interface UsersService {
 
   public Map getByUsername(String username, Integer page, Integer size);
 
-  public Map update(Users users, Long iduser);
+  public Map update(Users users, Long idusers);
+
+  public Map delete(Long users);
 }

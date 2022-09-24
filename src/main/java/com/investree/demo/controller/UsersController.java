@@ -47,9 +47,15 @@ public class UsersController {
     return new ResponseEntity<Map>(save, HttpStatus.OK);
   }
 
-  @PutMapping("/update/{iduser}")
-  public ResponseEntity<Map> update(@PathVariable(value = "iduser") Long iduser, @RequestBody Users objModel) {
-    Map map = usersService.update(objModel, iduser);
+  @PutMapping("/update/{idusers}")
+  public ResponseEntity<Map> update(@PathVariable(value = "idusers") Long idusers, @RequestBody Users objModel) {
+    Map map = usersService.update(objModel, idusers);
+    return new ResponseEntity<Map>(map, HttpStatus.OK);
+  }
+
+  @DeleteMapping("/delete/{idusers}")
+  public ResponseEntity<Map> delete(@PathVariable(value = "idusers") Long idusers) {
+    Map map = usersService.delete(idusers);
     return new ResponseEntity<Map>(map, HttpStatus.OK);
   }
 }
