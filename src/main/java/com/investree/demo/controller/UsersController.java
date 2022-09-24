@@ -19,15 +19,15 @@ import java.util.*;
 public class UsersController {
 
   @Autowired
-  public UsersRepository userRepository;
+  public UsersRepository usersRepository;
 
   @Autowired
-  UsersService userService;
+  public UsersService usersService;
 
   @GetMapping("/listUser")
   @ResponseBody
   public ResponseEntity<Map> getList() {
-    Map c = userService.getAllUsers();
+    Map c = usersService.getAllUsers();
     return new ResponseEntity<Map>(c, HttpStatus.OK);
   }
 
@@ -37,13 +37,19 @@ public class UsersController {
       @RequestParam() Integer size,
       @RequestParam() String username) {
     Pageable show_data = PageRequest.of(page, size);
-    Page<Users> list = userRepository.getByUsername(username, show_data);
+    Page<Users> list = usersRepository.getByUsername(username, show_data);
     return new ResponseEntity<Page<Users>>(list, new HttpHeaders(), HttpStatus.OK);
   }
 
   @PostMapping("/save")
   public ResponseEntity<Map> save(@RequestBody Users objModel) {
-    Map save = userService.insert(objModel);
+    Map save = usersService.insert(objModel);
     return new ResponseEntity<Map>(save, HttpStatus.OK);
+  }
+
+  @PutMapping("/update/{iduser}")
+  public ResponseEntity<Map> update(@PathVariable(value = "iduser") Long iduser, @RequestBody Users objModel) {
+    Map map = usersService.update(objModel, iduser);
+    return new ResponseEntity<Map>(map, HttpStatus.OK);
   }
 }

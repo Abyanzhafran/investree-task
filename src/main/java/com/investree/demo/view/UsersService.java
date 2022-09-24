@@ -10,4 +10,6 @@ public interface UsersService {
   public Map getAllUsers();
 
   public Map getByUsername(String username, Integer page, Integer size);
+
+  public Map update(Users users, Long iduser);
 }

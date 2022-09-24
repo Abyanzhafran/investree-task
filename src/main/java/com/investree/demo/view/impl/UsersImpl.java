@@ -76,6 +76,35 @@ public class UsersImpl implements UsersService {
       map.put("status", "failed");
       return map;
     }
+  }
 
+  @Override
+  public Map update(Users users, Long idusers) {
+    Map map = new HashMap();
+    try {
+      Users obj = usersRepository.getById(users.getId());
+
+      if (obj == null) {
+        map.put("statusCode", "404");
+        map.put("statusMessage", "Data id tidak ditemukan");
+        return map;
+      }
+
+      obj.setUsername(users.getUsername());
+      obj.setPassword(users.getPassword());
+      obj.setIs_active(users.getIs_active());
+      usersRepository.save(obj);
+
+      map.put("data", obj);
+      map.put("statusCode", "200");
+      map.put("statusMessage", "Update Sukses");
+      return map;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      map.put("statusCode", "500");
+      map.put("statusMessage", e);
+      return map;
+    }
   }
 }
