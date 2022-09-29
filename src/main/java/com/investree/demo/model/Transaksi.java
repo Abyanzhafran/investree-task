@@ -33,4 +33,8 @@ public class Transaksi implements Serializable {
 
   @Column(name = "status")
   private String status;
+
+  @JsonIgnore
+  @OneToOne(mappedBy = "paymentHistory")
+  private PaymentHistory paymentHistory;
 }
