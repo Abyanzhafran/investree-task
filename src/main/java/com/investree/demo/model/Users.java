@@ -1,9 +1,10 @@
 package com.investree.demo.model;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @Entity
@@ -25,6 +26,10 @@ public class Users implements Serializable {
   @Column(name = "is_active")
   private Boolean is_active;
 
+  @JsonIgnore
   @OneToOne(mappedBy = "detailUser")
   private UsersDetail detail;
+
+  @OneToMany(mappedBy = "transaksi")
+  private List<Transaksi> transaksi;
 }
