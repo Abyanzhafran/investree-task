@@ -18,17 +18,14 @@ public class TransaksiPaymentImpl implements TransaksiService {
   @Autowired
   public TransaksiRepository transaksiRepository;
 
-  // @Autowired
-  // public TransaksiService transaksiService;
-
   @Override
   public Map save(Transaksi obj) {
     Map map = new HashMap();
     try {
       Transaksi save = transaksiRepository.save(obj);
       map.put("data", save);
+      map.put("status", "sukses");
       map.put("code", "200");
-      map.put("status", "success");
       return map;
     } catch (Exception e) {
       map.put("code", "500");
@@ -45,8 +42,8 @@ public class TransaksiPaymentImpl implements TransaksiService {
       update.setStatus(objModel.getStatus());
       Transaksi doSave = transaksiRepository.save(update);
       map.put("data", doSave);
+      map.put("status", "sukses");
       map.put("code", "200");
-      map.put("status", "success");
     } catch (Exception e) {
       map.put("code", "500");
       map.put("status", "failed");
