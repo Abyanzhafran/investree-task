@@ -17,10 +17,11 @@ public class Transaksi implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @JsonIgnore
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "id_meminjam", referencedColumnName = "id")
-  private Users transaksi;
+  @Column(name = "id_peminjam")
+  private int id_peminjam;
+
+  @Column(name = "id_meminjam")
+  private int id_meminjam;
 
   @Column(name = "tenor")
   private int tenor;

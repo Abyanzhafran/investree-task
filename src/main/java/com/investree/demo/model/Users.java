@@ -3,7 +3,6 @@ package com.investree.demo.model;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
@@ -29,7 +28,4 @@ public class Users implements Serializable {
   @JsonIgnore
   @OneToOne(mappedBy = "detailUser")
   private UsersDetail detail;
-
-  @OneToMany(mappedBy = "transaksi")
-  private List<Transaksi> transaksi;
 }
