@@ -24,8 +24,8 @@ public class TransaksiPaymentImpl implements TransaksiService {
     try {
       Transaksi save = transaksiRepository.save(obj);
       map.put("data", save);
+      map.put("status", "sukses");
       map.put("code", "200");
-      map.put("status", "success");
       return map;
     } catch (Exception e) {
       map.put("code", "500");
@@ -35,30 +35,20 @@ public class TransaksiPaymentImpl implements TransaksiService {
   }
 
   @Override
-  public Map updateStatus(Transaksi transaksi, Long idtransaksi) {
+  public Map updateStatus(Transaksi objModel) {
     Map map = new HashMap();
     try {
-      Transaksi obj = transaksiRepository.getById(transaksi.getId());
-
-      if (obj == null) {
-        map.put("statusCode", "404");
-        map.put("statusMessage", "Data id tidak ditemukan");
-        return map;
-      }
-
-      obj.setStatus(transaksi.getStatus());
-      transaksiRepository.save(obj);
-
-      map.put("data", obj);
-      map.put("statusCode", "200");
-      map.put("statusMessage", "Update Sukses");
-      return map;
-
+      Transaksi update = transaksiRepository.getById(objModel.getId());
+      update.setStatus(objModel.getStatus());
+      Transaksi doSave = transaksiRepository.save(update);
+      map.put("data", doSave);
+      map.put("status", "sukses");
+      map.put("code", "200");
     } catch (Exception e) {
-      e.printStackTrace();
-      map.put("statusCode", "500");
-      map.put("statusMessage", e);
+      map.put("code", "500");
+      map.put("status", "failed");
       return map;
     }
+    return map;
   }
 }
