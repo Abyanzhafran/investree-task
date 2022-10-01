@@ -17,6 +17,9 @@ public class Transaksi implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
+  @Column(name = "id_peminjam")
+  private int id_peminjam;
+
   @JsonIgnore
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "id_meminjam", referencedColumnName = "id")

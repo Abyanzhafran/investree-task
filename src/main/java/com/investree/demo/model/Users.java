@@ -4,6 +4,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
